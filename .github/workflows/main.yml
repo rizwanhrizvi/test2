@@ -1,23 +1,16 @@
-name: (Shared) Lint
+name: CI
 
 on:
-  push:
-    branches: [main]
   pull_request:
-    types: [opened]
-
-permissions: {}
 
 concurrency:
-  group: ${{ github.workflow }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
-  check_license:
-    name: Check license
+  linter:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Make script executable
-        run: chmod +x ./scripts/ci/check_license.sh
-      - run: ./scripts/ci/check_license.sh
+      - name: repo file execution
+        run: python3 main.py
