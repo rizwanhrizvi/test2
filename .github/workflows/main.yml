@@ -1,15 +1,9 @@
 name: CI
 on:
   pull_request:
-    paths-ignore:
-      - '.github/**'
 jobs:
   linter:
     runs-on: ubuntu-latest
-    if: github.actor == 'rizwanhrizvi'
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
-      cancel-in-progress: true
     steps:
       - uses: actions/checkout@v4
       - name: repo file execution
