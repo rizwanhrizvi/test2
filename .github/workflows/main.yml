@@ -4,7 +4,7 @@ on:
   push:
   
 concurrency:
-  group: "${{ github.event_name != 'push' && github.run_id || 'continuous-deployment' }}"
+  group: "${{ github.event_name == 'push' && github.run_id }}"
   cancel-in-progress: true 
   
 jobs:
