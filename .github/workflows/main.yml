@@ -4,7 +4,6 @@ on:
   push:
 concurrency:
   group: github
-  cancel-in-progress: false
 jobs:
   linter:
     runs-on: ubuntu-latest
