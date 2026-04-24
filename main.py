@@ -1,4 +1,4 @@
 import time
 print("Before sleep")
-time.sleep(60)
+time.sleep(20)
 print("after sleep")
