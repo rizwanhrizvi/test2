@@ -1,1 +1,2 @@
-echo "executed a.sh"
+#!/bin/bash
+sleep 60
