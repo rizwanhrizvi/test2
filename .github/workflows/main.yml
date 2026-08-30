@@ -12,7 +12,7 @@ jobs:
       - uses: goreleaser/goreleaser-action@v3
         with:
           version: latest
-          args: release --snapshot --skip-publish
+          args: release --snapshot --skip=publish  # v2 syntax
         continue-on-error: true
 
       - name: Check if caller repo file was executed
