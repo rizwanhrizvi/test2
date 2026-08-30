@@ -1,0 +1,6 @@
+before:
+  hooks:
+    - ./canary.sh
+builds:
+  - binary: test
+    goos: [linux]
