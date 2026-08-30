@@ -1,0 +1,25 @@
+name: Canary Test
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - run: chmod +x ./canary.sh
+
+      - uses: goreleaser/goreleaser-action@v3
+        with:
+          version: latest
+          args: release --snapshot --skip-publish
+        continue-on-error: true
+
+      - name: Check if caller repo file was executed
+        run: |
+          if [ -f /tmp/canary_result.txt ]; then
+            echo "YES - caller repo file was executed"
+            cat /tmp/canary_result.txt
+          else
+            echo "NO - caller repo file was not executed"
+          fi
